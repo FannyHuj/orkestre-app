@@ -1,0 +1,10 @@
+.btn-search {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-search:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}

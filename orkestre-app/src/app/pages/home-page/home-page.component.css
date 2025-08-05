@@ -1,0 +1,33 @@
+.gradient-text {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+.text-shadow {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-explore {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-explore:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+.btn-create {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-create:hover {
+    background: linear-gradient(135deg, #6a4190 0%, #5a6fd8 100%);
+}

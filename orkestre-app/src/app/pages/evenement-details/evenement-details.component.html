@@ -1,0 +1,83 @@
+<div class="container my-5">
+    <button class="btn btn-return text-white mb-3" routerLink="/ShowAllEvenements">Retour aux évènements</button>
+
+    <div class="row">
+
+        <!-- Evenement card -->
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient text-white">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <span class="badge">{{evenement.category}}</span>
+                        
+                        <!-- Social icons -->
+                        <div>
+                            <button class="btn btn-social text-white me-2"aria-label="Button like" data-bs-toggle="modal" data-bs-target="#share"><i class="bi bi-share-fill"></i></button>
+                            <button *ngIf="isOwner()" class="btn btn-social text-white me-2" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel"><i class="bi bi-trash-fill"></i></button>
+                            <button *ngIf="!isOwner()"class="btn btn-social text-white me-2" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelRegistration"><i class="bi bi-x-circle"></i></button>
+                        </div>
+
+
+
+                    </div>
+                    <h2 class="display-5 fw-bold mt-4">{{ evenement.evenementDate | date: 'd'}}<small class="fs-5">{{
+                            evenement.evenementDate | date: 'MMM' | uppercase}}</small></h2>
+                </div>
+
+                <div class="card-body">
+                    <h3 class="card-title fw-bold mb-4">{{evenement.title}}</h3>
+                    <ul class="list-unstyled text-muted mb-4">
+                        <li><i class="bi bi-calendar-event me-2" style="color: #7864f4;"></i>{{evenement.evenementDate | date: 'fullDate'}}</li>
+                        <li><i class="bi bi-clock me-2"style="color: #7864f4;"></i>{{evenement.evenementDate | date: 'HH:mm'}}</li>
+                        <li><i class="bi bi-geo-alt me-2"style="color: #7864f4;"></i>{{evenement.location}}</li>
+                        <li><i class="bi bi-person me-2"style="color: #7864f4;"></i>{{evenement.organizer.firstName}}</li>
+                    </ul>
+                    <p class="fw-semibold">{{evenement.description}}.</p>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign in cart -->
+        <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="card shadow-lg border-0 rounded-4 text-center">
+                <div class="card-body">
+                    <h4 class="fw-bold">{{evenement.price}}€</h4>
+                    <p class="text-muted">par personne</p>
+                    <p><strong>{{evenement.countParticipants}}/{{evenement.maxCapacity}}</strong> participants</p>
+                    <!-- Progress bar -->
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width.%]="(evenement.countParticipants / evenement.maxCapacity) * 100" [attr.aria-valuenow]="evenement.countParticipants"[attr.aria-valuemin]="0"[attr.aria-valuemax]="evenement.maxCapacity"aria-label="progress bar"></div>
+                    </div>
+                    <p class="text-muted small">{{evenement.remainingCapacity}} places restantes</p>
+                    <button class="btn btn-return text-white mb-3" data-bs-toggle="modal"
+                        data-bs-target="#confirmed">S'inscrire maintenant</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-evenement-registration [evId]="evenement.id"></app-evenement-registration>
+<app-cancel-evenement-by-organizer [evId]="evenement.id"></app-cancel-evenement-by-organizer>
+<app-cancel-registration-by-participants [evenement]="evenement"></app-cancel-registration-by-participants>
+
+<!-- Modal copy page link -->
+<div class="modal fade" id="share" tabindex="-1" aria-labelledby="shareLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shareLabel">Partager cet évènement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body text-center"> <qrcode [qrdata]="shareableUrl" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <p>Copiez ce lien et n'hésitez pas à partager l'évènement à votre entourage</p>
+        <input type="text" class="form-control" [value]="shareableUrl" readonly>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

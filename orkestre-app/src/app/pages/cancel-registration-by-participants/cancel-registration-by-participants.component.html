@@ -1,0 +1,18 @@
+<!-- Modal to allow a participant to cancel his registration -->
+<div class="modal fade" id="cancelRegistration" tabindex="-1" aria-labelledby="cancelRegistrationLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelRegistrationLabel">Annuler votre participation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir annuler votre participation à cet évènement ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" (click)="cancelRegistrationByParticipants()"class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>

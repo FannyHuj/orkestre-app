@@ -1,0 +1,19 @@
+<!-- Modal to allow an organizer to cancel his evenement -->
+<div class="modal fade" id="cancel" tabindex="-1" aria-labelledby="cancelLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelLabel">Annuler l'évènement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir annuler cet évènement ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" (click)="cancelEvenementByOrganizer()"class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+

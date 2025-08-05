@@ -1,0 +1,8 @@
+.gradient-header {
+    background-image: linear-gradient(to right top, #6865f2, #7363f3, #7d61f4, #865ff4, #905cf4);
+}
+
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}

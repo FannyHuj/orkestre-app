@@ -1,0 +1,20 @@
+<div class="gradient-header">
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom border-white">
+    
+    <a routerLink="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-white text-decoration-none">
+      <img src="assets/images/orkestreLogo.png" alt="Orkestre Logo" class="logo ms-3" style="height: 100px;">
+    </a>
+
+    <div class="d-flex justify-content-end align-items-center me-3">
+      <!-- Non connecté -->
+      <button *ngIf="!isUserConnected()" type="button" class="btn btn-outline-light me-4" routerLink="/Login">Connexion</button>
+      <button *ngIf="!isUserConnected()" type="button" class="btn btn-light text-dark me-4" routerLink="/SignIn">Inscription</button>
+
+      <!-- Connecté -->
+      <button *ngIf="isUserConnected()" type="button" (click)="logout()" class="btn btn-outline-light me-4">Déconnexion</button>
+      <button *ngIf="isUserConnected()" type="button" class="btn btn-outline-light me-4" routerLink="/profilePage">Mon espace</button>
+    </div>
+
+  </header>
+</div>

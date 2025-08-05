@@ -1,0 +1,78 @@
+<app-evenement-filters #filterEvenements></app-evenement-filters>
+
+<!-- Card evenement -->
+<div class="album py-5">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      <div class="col d-flex" *ngFor="let evenement of filterEvenements.evenementList">
+        <div class="card shadow-sm border-0 card-hover h-100 d-flex flex-column w-100">
+          
+          <!-- Top Section -->
+          <div class="card-img-top position-relative text-white">
+            <div class="position-absolute top-0 start-0 m-3">
+              <span class="badge bg-light text-dark rounded-pill px-3 py-2">
+                {{ evenement.category }}
+              </span>
+            </div>
+            <div class="position-absolute top-0 end-0 m-3">
+              <span class="badge bg-light text-dark rounded-pill px-3 py-2 fw-bold">
+                {{ evenement.price }}€
+              </span>
+            </div>
+            <div class="position-absolute bottom-0 start-0 m-3">
+              <div class="display-4 fw-bold mb-0">{{ evenement.evenementDate | date: 'd' }}</div>
+              <div class="text-uppercase">{{ evenement.evenementDate | date: 'MMMM' }}</div>
+            </div>
+          </div>
+
+          <!-- Body Section -->
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-primary fw-bold">{{ evenement.title }}</h5>
+            <p class="card-text text-muted">
+              {{ evenement.description }}
+            </p>
+
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-calendar3 me-2 text-muted"></i>
+                <small class="text-muted">{{ evenement.evenementDate | date: 'dd/MM/yyyy' }}</small>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-clock me-2 text-muted"></i>
+                <small class="text-muted">{{ evenement.evenementDate | date: 'HH:mm' }}</small>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-geo-alt me-2 text-muted"></i>
+                <small class="text-muted">{{ evenement.location }}</small>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-people me-2 text-muted"></i>
+                <small class="text-muted">{{evenement.countParticipants}} / {{ evenement.maxCapacity }} participants</small>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-file-person me-2 text-muted"></i>
+                <small class="text-muted">Organisé par : {{ evenement.organizer.firstName}} {{ evenement.organizer.lastName}}</small>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex gap-2 mt-auto">
+              <button *ngIf="evenement.isCompleted === false" class="btn btn-signIn text-white w-50" (click)="setSelectedEvenement(evenement)" data-bs-toggle="modal" data-bs-target="#confirmed">
+                S'inscrire
+              </button>
+               <button *ngIf="evenement.isCompleted === true" class="btn btn-signIn text-white w-50" disabled>
+               Complet
+              </button>
+              <button *ngIf="evenement.isCompleted === false" class="btn btn-signIn text-white w-50" [routerLink]="['/showEvenementDetails', evenement.id]">
+                Voir le détails
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-evenement-registration [evId]="selectedEvenement.id"></app-evenement-registration>

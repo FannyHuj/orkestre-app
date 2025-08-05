@@ -1,0 +1,108 @@
+<div class="container-fluid">
+
+  <!-- Header -->
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="container">
+        <div class="row justify-content-center my-4">
+          <div class="form-container p-4">
+                <!-- Success alert -->
+                  <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                    {{ successMessage }}
+                    <button type="button" class="btn-close" aria-label="Close" (click)="closeAlert()"></button>
+                  </div>
+
+                  <!-- Error alert -->
+                  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    {{ successMessage }}
+                    <button type="button" class="btn-close" aria-label="Close" (click)="closeErrorAlert()"></button>
+                  </div>
+            
+            <div class="d-flex align-items-center justify-content-between flex-wrap">
+              <div class="d-flex align-items-center">
+                <div class="profile-avatar me-3">
+                  <div class="position-relative d-inline-block me-3">
+                    
+                    <!-- Avatar -->
+                    <img [src]="pictureURL + '/assets/images/' + userConnected.picture" alt="Avatar"
+                      class="avatar-small rounded-circle" />
+
+
+                    <!-- Pencil icon -->
+                    <label for="fileInput" class="pencil position-absolute top-0 start-100 rounded-circle shadow-sm">
+                      <i class="bi bi-pencil-fill"></i>
+                    </label>
+
+
+                    <!-- Hidden file input -->
+                    <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)">
+                  </div>
+
+                </div>
+                <div>
+                  <h1 class="h4 mb-2">{{userConnected.firstName}} {{userConnected.lastName}}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Personnal informations-->
+      <div class="container">
+        <div class="row justify-content-center my-4">
+          <div class="form-container p-4">
+            <div class="text-center mb-4">
+              <h1 class="h3 mb-2">Informations personnelles</h1>
+              <p class="subtitle">Gérez vos informations de contact</p>
+            </div>
+
+
+            <form>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="firstName" class="form-label">Prénom</label>
+                  <input type="text" class="form-control" id="firstName" [(ngModel)]="userConnected.firstName"
+                    name="firstName">
+                </div>
+                <div class="col-md-6">
+                  <label for="lastName" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="lastName" [(ngModel)]="userConnected.lastName"
+                    name="lastName">
+                </div>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="email" class="form-label">
+                  Email
+                </label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="userConnected.email" name="email">
+              </div>
+
+
+              <div class="mb-3">
+                <label for="phone" class="form-label">
+                  Téléphone
+                </label>
+                <input type="tel" class="form-control" id="phone" [(ngModel)]="userConnected.phoneNumber"
+                  name="phoneNumber">
+              </div>
+
+
+              <div class="d-flex justify-content-end mt-4">
+                <button type="button" class="btn btn-outline-secondary me-2">Annuler</button>
+                <button type="button" class="btn btn-create text-white"
+                  (click)="updateProfileInfos()">Sauvegarder</button>
+
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>

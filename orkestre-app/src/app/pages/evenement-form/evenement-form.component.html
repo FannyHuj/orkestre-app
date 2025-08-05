@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row justify-content-center my-4">
+        <div class="form-container p-4">
+            <div class="text-center mb-4">
+                <h1 class="h3 mb-2">Créer un événement</h1>
+                <p class="subtitle">Organisez votre événement exceptionnel</p>
+            </div>
+
+            <form>
+                <!-- Evenement title -->
+                <div class="mb-3">
+                    <label for="eventTitle" class="form-label">Titre de l'événement</label>
+                    <input type="text" [(ngModel)]="evenement.title" class="form-control" id="eventTitle" name="eventTitle">
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label for="eventDescription" class="form-label">Description</label>
+                    <textarea class="form-control" [(ngModel)]="evenement.description" id="eventDescription" rows="3" name="eventDescription"></textarea>
+                </div>
+
+                <!-- Evenement category -->
+                <div class="mb-3">
+                    <label for="eventType" class="form-label">Type d'événement</label>
+                    <select class="form-select" id="eventType" [(ngModel)]="selectedCategory" name="eventType">
+                        <option selected>Sélectionner une catégorie</option>
+                        <option value="concert">Concert</option>
+                        <option value="conference">Conference</option>
+                        <option value="sport">Sport</option>
+                        <option value="culture">Culture</option>
+                        <option value="culinary">Cuisine</option>
+                    </select>
+                </div>
+
+                <!-- Date and hour -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="eventDate" class="form-label">
+                            <i class="bi bi-calendar3 me-1"></i>Date
+                        </label>
+                        <input type="date" class="form-control"  [(ngModel)]="evenement.evenementDate" id="eventDate"name="eventDate">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="eventTime" class="form-label">
+                            <i class="bi bi-clock me-1"></i>Heure
+                        </label>
+                        <input type="time" class="form-control" [(ngModel)]="evenement.evenementDate" id="eventTime" placeholder="--:--" name="eventTime">
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="mb-3">
+                    <label for="eventLocation" class="form-label">
+                        <i class="bi bi-geo-alt me-1"></i>Lieu
+                    </label>
+                    <input type="text" class="form-control" [(ngModel)]="evenement.location" id="eventLocation" name="eventLocation">
+                </div>
+
+                <!-- Price and number of participants -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="eventPrice" class="form-label">Prix (€)</label>
+                        <input type="number" class="form-control" [(ngModel)]="evenement.price" id="eventPrice" name="eventPrice">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="maxParticipants" class="form-label">
+                            <i class="bi bi-people me-1"></i>Participants max
+                        </label>
+                        <input type="number" class="form-control" [(ngModel)]="evenement.maxCapacity" id="maxParticipants" name="MaxParticipants">
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <button (click)="createEvenement()" type="submit" class="btn btn-primary btn-create w-100 text-white">
+                    Créer l'événement
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
