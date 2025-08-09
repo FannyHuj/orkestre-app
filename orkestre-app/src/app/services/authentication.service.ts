@@ -44,13 +44,13 @@ export class AuthenticationService {
     let tokenInfo = this.getDecodedAccessToken(this.getToken()); // Récupération du Token
     user.email = tokenInfo.username; // L'attribut mail de l'objet user est égal à l'attribut mail (username) contenu dans le token
     return this.http.get(
-      environment.apiURL+`api/user/${tokenInfo.username}`
+      environment.apiURL+`/api/user/${tokenInfo.username}`
     ); // envoie le user à PHP
   }
 
   login(login: Login): Observable<Auth> {
     this.isUserLogged = true;
-    return this.http.post<Auth>(environment.apiURL+'api/login_check', login);
+    return this.http.post<Auth>(environment.apiURL+'/api/login_check', login);
   }
 
   logout() {
