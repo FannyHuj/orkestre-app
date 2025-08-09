@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavBarComponent } from "./pages/nav-bar/nav-bar.component";
-import { FooterComponent } from "./pages/footer/footer.component";
+import { NavBarComponent } from "./features/nav-bar/nav-bar.component";
+import { FooterComponent } from "./features/footer/footer.component";
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr'; registerLocaleData(localeFr, 'fr');
 

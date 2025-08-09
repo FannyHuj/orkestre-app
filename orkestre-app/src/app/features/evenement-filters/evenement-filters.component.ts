@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Output} from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Evenement } from '../../shared/models/evenement';
 import { EvenementFilters } from '../../shared/models/evenement-filters';
 import { EvenementService } from '../../services/evenement.service';
-import { User } from '../../shared/models/user';
 
 @Component({
   selector: 'app-evenement-filters',
@@ -20,14 +19,9 @@ export class EvenementFiltersComponent {
   evenementList: Evenement[] = [];
   filters:EvenementFilters = {} as EvenementFilters;
 
-  
-
-  //@Output() evenementsFound = new EventEmitter<Evenement[]>();
-
   constructor (private service: EvenementService) {
     this.applyDefaultFilters();
   }
-
   applyFilters(){
       if (this.filters.date === undefined) {
        this.filters.date = "null";
@@ -36,17 +30,10 @@ export class EvenementFiltersComponent {
       this.evenementList = data;
     });
   }
-
   applyDefaultFilters(){
     
       this.service.getAllEvenements().subscribe((data: Evenement[]) => {
       this.evenementList = data;
     });
-   
-    
-    
-
   }
-
-
 }

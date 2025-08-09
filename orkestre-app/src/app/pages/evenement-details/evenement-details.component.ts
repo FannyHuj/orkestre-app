@@ -4,8 +4,8 @@ import { EvenementRegistrationComponent } from '../../features/evenement-registr
 import { EvenementService } from '../../services/evenement.service';
 import { Evenement } from '../../shared/models/evenement';
 import { CommonModule } from '@angular/common';
-import { CancelEvenementByOrganizerComponent } from '../cancel-evenement-by-organizer/cancel-evenement-by-organizer.component';
-import { CancelRegistrationByParticipantsComponent } from '../cancel-registration-by-participants/cancel-registration-by-participants.component';
+import { CancelEvenementByOrganizerComponent } from '../../features/cancel-evenement-by-organizer/cancel-evenement-by-organizer.component';
+import { CancelRegistrationByParticipantsComponent } from '../../features/cancel-registration-by-participants/cancel-registration-by-participants.component';
 import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../shared/models/user';
 import { QRCodeComponent } from 'angularx-qrcode';

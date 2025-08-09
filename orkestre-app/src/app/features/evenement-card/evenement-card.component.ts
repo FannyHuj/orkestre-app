@@ -5,8 +5,8 @@ import { Evenement } from '../../shared/models/evenement';
 import { EvenementService } from '../../services/evenement.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
-import { CancelEvenementByOrganizerComponent } from '../../pages/cancel-evenement-by-organizer/cancel-evenement-by-organizer.component';
-import { CancelRegistrationByParticipantsComponent } from '../../pages/cancel-registration-by-participants/cancel-registration-by-participants.component';
+import { CancelEvenementByOrganizerComponent } from '../cancel-evenement-by-organizer/cancel-evenement-by-organizer.component';
+import { CancelRegistrationByParticipantsComponent } from '../cancel-registration-by-participants/cancel-registration-by-participants.component';
 import { User } from '../../shared/models/user';
 
 @Component({
