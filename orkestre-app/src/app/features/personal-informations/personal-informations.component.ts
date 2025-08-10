@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-personal-informations',
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class PersonalInformationsComponent {
   user: User = {} as User;
   userConnected = {} as User;
-  pictureURL = 'http://localhost:8000/';
+  pictureURL = environment.apiURL+'/';
   avatar: File = {} as File;
   fileName = '';
   successMessage: string = '';
