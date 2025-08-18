@@ -5,6 +5,7 @@ import { Evenement } from '../../shared/models/evenement';
 import { EvenementService } from '../../services/evenement.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { EvenementCategoryEnum } from '../../shared/models/evenementCategoryEnum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-evenement-form',
@@ -15,8 +16,12 @@ import { EvenementCategoryEnum } from '../../shared/models/evenementCategoryEnum
 export class EvenementFormComponent {
   evenement: Evenement = {} as Evenement;
   selectedCategory: EvenementCategoryEnum = {} as EvenementCategoryEnum;
+  //toastMessage:Toast = {} as Toast;
+  
 
-  constructor(private service: EvenementService,private authService: AuthenticationService) {
+  constructor(private service: EvenementService,private authService: AuthenticationService,private toastr: ToastrService) {
+
+
     this.authService.getUser().subscribe({
       next: (user) => {
         console.log(user.id)
@@ -33,6 +38,8 @@ export class EvenementFormComponent {
     this.service.addEvenement(this.evenement).subscribe({
       next: (data) => {
         console.log('Evenement crée', data);
+       
+        this.toastr.success('Evénement enregistré');
       },
       error: (error) => {
         console.error("Erreur lors de la création de l'évènement", error);
@@ -40,3 +47,6 @@ export class EvenementFormComponent {
     });
   }
 }
+
+
+

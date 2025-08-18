@@ -6,6 +6,7 @@ import { Login } from '../../shared/models/login';
 import { Router, RouterLink } from '@angular/router';
 import { LoginTraceService } from '../../services/login-trace.service';
 import { LoginTrace } from '../../shared/models/login-trace';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { LoginTrace } from '../../shared/models/login-trace';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  constructor(private auth: AuthenticationService, private router: Router, private LoginTraceService: LoginTraceService) {}
+  constructor(private auth: AuthenticationService, private router: Router, private LoginTraceService: LoginTraceService,private toastr: ToastrService) {}
   login: Login = {} as Login;
   token: string | null = null;
   loginTrace: LoginTrace = {} as LoginTrace;
@@ -32,6 +33,7 @@ export class LoginComponent {
             this.loginTrace.userId = user.id;
             this.LoginTraceService.addLoginTrace(this.loginTrace).then(() => {
               console.log('Trace de connexion ajoutée avec succès');
+              this.toastr.success('Connexion réussie');
             }); 
           }, 
           error: err => console.error('Erreur lors de la récupération de l\'utilisateur :', err) 

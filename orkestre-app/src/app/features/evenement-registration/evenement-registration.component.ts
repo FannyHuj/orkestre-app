@@ -4,6 +4,7 @@ import { Evenement } from '../../shared/models/evenement';
 import { CommonModule } from '@angular/common';
 import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../shared/models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-evenement-registration',
@@ -23,7 +24,8 @@ export class EvenementRegistrationComponent {
 
   constructor(
     private evenementService: EvenementService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private toastr: ToastrService
   ) {}
 
   closeAlert() {
@@ -39,6 +41,7 @@ export class EvenementRegistrationComponent {
       next: (user) => {
         this.user = user;
         this.evenementService.evenementRegistrationByUser(this.evId, this.user.id).subscribe();
+        this.toastr.success('Inscription réussie');
 
       },
       error: (err) => {

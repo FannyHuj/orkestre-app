@@ -3,7 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from "./features/nav-bar/nav-bar.component";
 import { FooterComponent } from "./features/footer/footer.component";
 import { registerLocaleData } from '@angular/common';
-import localeFr from '@angular/common/locales/fr'; registerLocaleData(localeFr, 'fr');
+import localeFr from '@angular/common/locales/fr';
+ registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'app-root',
