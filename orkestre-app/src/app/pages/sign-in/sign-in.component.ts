@@ -5,6 +5,7 @@ import { User } from '../../shared/models/user';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { UserRoleEnum } from '../../shared/models/userRoleEnum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-in',
@@ -20,10 +21,9 @@ export class SignInComponent {
 
   redirectUrl = '';
   fileName = '';
-  successMessage: string = '';
   errorMessage: string = '';
 
-  constructor(private userService: UserService ,private router: Router) {}
+  constructor(private userService: UserService ,private router: Router,private toastr: ToastrService) {}
 
   signIn(event: Event) {
     event.preventDefault();
@@ -37,22 +37,15 @@ export class SignInComponent {
     formData.append("picture", this.avatar);
 
     this.userService.signIn(formData).subscribe({
-      next: (response) => {
-        //Wait for 2 seconds before showing the success message
-        setTimeout(() => {
-          this.successMessage = 'Utilisateur créé avec succès !';
-        }, 2000);
+      next: () => {
 
         //Redirect to the home page after creating the user
         this.router.navigate([this.redirectUrl]);
-
-        console.log('User created successfully', response);
+        this.toastr.success('inscription réussie');
       },
       error: (error) => {
         this.errorMessage =
           "Erreur lors de la création de l'utilisateur, veuillez recommencer plus tard";
-        //Show the error message
-        console.error('Error creating user', error);
       },
     });
   }

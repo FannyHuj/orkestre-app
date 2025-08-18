@@ -7,6 +7,10 @@
             </div>
 
             <form>
+                 <!-- Alerts -->
+            <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                {{ errorMessage }}
+            </div>
                 <!-- Evenement title -->
                 <div class="mb-3">
                     <label for="eventTitle" class="form-label">Titre de l'événement</label>

@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class EvenementFormComponent {
   evenement: Evenement = {} as Evenement;
   selectedCategory: EvenementCategoryEnum = {} as EvenementCategoryEnum;
-  //toastMessage:Toast = {} as Toast;
+  errorMessage: string = '';
   
 
   constructor(private service: EvenementService,private authService: AuthenticationService,private toastr: ToastrService) {
@@ -41,8 +41,9 @@ export class EvenementFormComponent {
        
         this.toastr.success('Evénement enregistré');
       },
-      error: (error) => {
-        console.error("Erreur lors de la création de l'évènement", error);
+      error: () => {
+        this.errorMessage =
+          "Erreur lors de la création de l'événement, veuillez recommencer plus tard";
       },
     });
   }

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { Evenement } from '../../shared/models/evenement';
 import { EvenementFilters } from '../../shared/models/evenement-filters';
 import { EvenementService } from '../../services/evenement.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-evenement-filters',
@@ -19,21 +20,33 @@ export class EvenementFiltersComponent {
   evenementList: Evenement[] = [];
   filters:EvenementFilters = {} as EvenementFilters;
 
-  constructor (private service: EvenementService) {
+  constructor (private service: EvenementService,private toastr: ToastrService) {
     this.applyDefaultFilters();
   }
   applyFilters(){
       if (this.filters.date === undefined) {
        this.filters.date = "null";
       }
-      this.service.getFilteredEvenements(this.filters).subscribe((data: Evenement[]) => {
-      this.evenementList = data;
-    });
-  }
+      this.service.getFilteredEvenements(this.filters).subscribe({
+      next: (data) => {
+        this.evenementList = data;
+      },
+      error: () => {
+         this.toastr.error('Impossible de récupérer les événements');
+      },
+    
+  });
+}
   applyDefaultFilters(){
     
-      this.service.getAllEvenements().subscribe((data: Evenement[]) => {
-      this.evenementList = data;
-    });
+      this.service.getAllEvenements().subscribe({
+      next: (data) => {
+        this.evenementList = data;
+      },
+      error: () => {
+         this.toastr.error('Impossible de récupérer les événements');
+      },
+    
+  });
   }
 }

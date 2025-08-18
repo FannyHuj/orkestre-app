@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { EvenementDetailsComponent } from './pages/evenement-details/evenement-details.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { NoPageComponent } from './shared/no-page/no-page.component';
 
 
 export const routes: Routes = [
@@ -36,6 +37,10 @@ export const routes: Routes = [
   {
     path: 'profilePage',
     component: ProfilePageComponent,
+  },
+   {
+    path: '**',
+    component: NoPageComponent,
   },
  
 ];
