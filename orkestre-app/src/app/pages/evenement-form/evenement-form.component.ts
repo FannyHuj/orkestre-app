@@ -6,6 +6,7 @@ import { EvenementService } from '../../services/evenement.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { EvenementCategoryEnum } from '../../shared/models/evenementCategoryEnum';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-evenement-form',
@@ -19,7 +20,7 @@ export class EvenementFormComponent {
   errorMessage: string = '';
   
 
-  constructor(private service: EvenementService,private authService: AuthenticationService,private toastr: ToastrService) {
+  constructor(private service: EvenementService,private authService: AuthenticationService,private toastr: ToastrService,private router: Router,) {
     
 
     this.authService.getUser().subscribe({
@@ -43,6 +44,8 @@ export class EvenementFormComponent {
         console.log('Evenement crée', data);
        
         this.toastr.success('Evénement enregistré');
+        this.router.navigateByUrl("/ShowAllEvenements");
+
       },
       error: () => {
         this.errorMessage =

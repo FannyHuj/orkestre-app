@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-personal-informations',
@@ -23,7 +24,8 @@ export class PersonalInformationsComponent {
 
   constructor(
     private userService: UserService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private toastr: ToastrService
   ) {
     this.authenticationService.getUser().subscribe({
       next: (user) => {
@@ -49,13 +51,10 @@ export class PersonalInformationsComponent {
       .subscribe({
         next: (response) => {
           this.userConnected.picture = response.picture;
-          console.log('User updated successfully', response);
-          this.successMessage = 'Vos informations ont été mises à jour avec succès !';
+          this.toastr.success('Vos informations ont été mises à jour avec succès !');
         },
         error: (error) => {
-          console.error('Error updating user', error);
-          this.errorMessage =
-            'Erreur lors de la mise à jour des informations, veuillez réessayer plus tard';
+          this.toastr.error('Vos informations n\'ont pas pu êtres mises à jour, veuillez réessayer plus tard');
         },
       });
   }

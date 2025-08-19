@@ -32,7 +32,7 @@ export class LoginComponent {
             this.loginTrace.loginDate = new Date();
             this.loginTrace.userId = user.id;
             this.LoginTraceService.addLoginTrace(this.loginTrace).then(() => {
-              console.log('Trace de connexion ajoutée avec succès');
+             
               this.toastr.success('Connexion réussie');
             }); 
           }, 
