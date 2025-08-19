@@ -6,6 +6,7 @@ export interface Evenement {
   title: string;
   description: string;
   evenementDate: Date;
+  evenementTime:Date;
   location: string;
   category: EvenementCategoryEnum;
   maxCapacity: number;

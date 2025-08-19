@@ -20,7 +20,7 @@ export class EvenementFormComponent {
   
 
   constructor(private service: EvenementService,private authService: AuthenticationService,private toastr: ToastrService) {
-
+    
 
     this.authService.getUser().subscribe({
       next: (user) => {
@@ -34,6 +34,9 @@ export class EvenementFormComponent {
   }
 
   createEvenement() {
+    let evenementDate=new Date(this.evenement.evenementDate);
+    let [evenementHour, evenementMinute] = `${this.evenement.evenementTime}`.split(':').map(Number);
+    this.evenement.evenementDate=new Date(evenementDate.setHours(evenementHour, evenementMinute, 0));
     this.evenement.category = this.selectedCategory;
     this.service.addEvenement(this.evenement).subscribe({
       next: (data) => {
