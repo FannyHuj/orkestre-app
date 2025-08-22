@@ -11,22 +11,27 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   signIn(user: FormData): Observable<any> {
-    return this.http.post(environment.apiURL+'/api/signIn', user);
+    return this.http.post(environment.apiURL + '/api/signIn', user);
   }
 
   getUserById(id: number): Observable<any> {
-    return this.http.get(environment.apiURL+`/api/getUserById/${id}`);
+    return this.http.get(environment.apiURL + `/api/getUserById/${id}`);
   }
 
-  getProfileInfo(id:number): Observable<User> {
-    return this.http.get<User>(environment.apiURL+`/api/getProfileInfo/${id}`); 
+  getProfileInfo(id: number): Observable<User> {
+    return this.http.get<User>(
+      environment.apiURL + `/api/getProfileInfo/${id}`
+    );
   }
 
   updateProfileInfos(id: number, formData: FormData): Observable<User> {
-  return this.http.post<User>(
-    environment.apiURL+`/api/updateProfileInfo/${id}`, 
-    formData
-  );
-}
+    return this.http.post<User>(
+      environment.apiURL + `/api/updateProfileInfo/${id}`,
+      formData
+    );
+  }
 
+  deleteProfile(id: number) {
+    return this.http.delete(environment.apiURL + `/api/deleteProfile/${id}`);
+  }
 }

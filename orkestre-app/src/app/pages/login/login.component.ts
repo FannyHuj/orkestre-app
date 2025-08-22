@@ -15,31 +15,35 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  constructor(private auth: AuthenticationService, private router: Router, private LoginTraceService: LoginTraceService,private toastr: ToastrService) {}
+  constructor(
+    private auth: AuthenticationService,
+    private router: Router,
+    private LoginTraceService: LoginTraceService,
+    private toastr: ToastrService
+  ) {}
   login: Login = {} as Login;
   token: string | null = null;
   loginTrace: LoginTrace = {} as LoginTrace;
 
   log() {
     this.auth.login(this.login).subscribe({
-      next: auth => {
+      next: (auth) => {
         this.auth.setToken(auth.token);
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl('/');
         this.auth.getUser().subscribe({
-          next: user => {
-        
+          next: (user) => {
             this.loginTrace.email = user.email;
             this.loginTrace.loginDate = new Date();
             this.loginTrace.userId = user.id;
             this.LoginTraceService.addLoginTrace(this.loginTrace).then(() => {
-             
-              this.toastr.success('Connexion réussie');
-            }); 
-          }, 
-          error: err => console.error('Erreur lors de la récupération de l\'utilisateur :', err) 
+            this.toastr.success('Connexion réussie');
+            });
+          },
         });
-      }, 
-      error: err => console.error('Quelque chose s\'est mal passé lors de la connexion :', err) 
-    }); 
+      },
+        error: () => {
+          this.toastr.error('La connexion a échoué, le mot de passe ou le pseudo sont incorrects');
+      },
+    });
   }
 }

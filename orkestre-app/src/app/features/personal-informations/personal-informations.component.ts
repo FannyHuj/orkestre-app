@@ -6,10 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteProfileComponent } from "../delete-profile/delete-profile.component";
 
 @Component({
   selector: 'app-personal-informations',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, DeleteProfileComponent],
   templateUrl: './personal-informations.component.html',
   styleUrl: './personal-informations.component.css',
 })
@@ -59,6 +60,7 @@ export class PersonalInformationsComponent {
       });
   }
 
+
   onFileSelected(event: any) {
     this.avatar = event.target.files[0];
     console.log('Avatar selected:', this.avatar);
@@ -74,4 +76,8 @@ export class PersonalInformationsComponent {
   closeErrorAlert() {
     this.errorMessage = '';
   }
+
+  selectUserProfile(userProfile : User ):void{
+        this.userConnected=userProfile;
+      }
 }

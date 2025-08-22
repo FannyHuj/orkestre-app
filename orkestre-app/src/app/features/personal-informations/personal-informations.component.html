@@ -92,9 +92,10 @@
 
 
               <div class="d-flex justify-content-end mt-4">
-                <button type="button" class="btn btn-outline-secondary me-2">Annuler</button>
-                <button type="button" class="btn btn-create text-white"
-                  (click)="updateProfileInfos()">Sauvegarder</button>
+                <button type="button" class="btn btn-delete btn-danger me-2" data-bs-toggle="modal" data-bs-target="#delete" (click)="userConnected">Supprimer mon compte</button>
+                <button type="button" class="btn btn-create text-white"(click)="updateProfileInfos()">Sauvegarder</button>
+
+                <app-delete-profile [userProfile]="userConnected.id"></app-delete-profile> 
 
 
               </div>
